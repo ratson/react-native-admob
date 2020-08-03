@@ -64,8 +64,8 @@ public class RNAdMobRewardedVideoAdModule extends ReactContextBaseJavaModule imp
     public void onRewardedVideoAdLoaded() {
         sendEvent(EVENT_AD_LOADED, null);
         if (mRequestAdPromise != null) {
-            mRequestAdPromise.resolve(null);
-            mRequestAdPromise = null;
+          mRequestAdPromise.resolve(null);
+          mRequestAdPromise = null;
         }
     }
 
@@ -121,8 +121,8 @@ public class RNAdMobRewardedVideoAdModule extends ReactContextBaseJavaModule imp
         event.putString("message", errorMessage);
         sendEvent(EVENT_AD_FAILED_TO_LOAD, event);
         if (mRequestAdPromise != null) {
-            mRequestAdPromise.reject(errorString, errorMessage);
-            mRequestAdPromise = null;
+          mRequestAdPromise.reject(errorString, errorMessage);
+          mRequestAdPromise = null;
         }
     }
 
@@ -197,10 +197,10 @@ public class RNAdMobRewardedVideoAdModule extends ReactContextBaseJavaModule imp
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                if (mRewardedVideoAd == null) {
-                    callback.invoke(false);
-                } else {
+                if (mRewardedVideoAd != null) {
                     callback.invoke(mRewardedVideoAd.isLoaded());
+                } else {
+                    callback.invoke(false);
                 }
             }
         });
